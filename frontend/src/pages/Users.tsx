@@ -12,7 +12,7 @@ const Users = () => {
 		queryFn: () => fetchUsers(page, 4),
 	});
 
-	if (isLoading) return <p>Loading...</p>;
+	if (isLoading) return <p className="h-screen text-6xl flex justify-center items-center">fetching users...</p>;
 	if (error) return <p>Error loading users.</p>;
 
 	const users = data.users.map((user: IUser) => ({
