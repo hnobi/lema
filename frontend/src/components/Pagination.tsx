@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface PaginationProps {
   page: number;
@@ -46,7 +46,7 @@ export default function Pagination({ page, totalPages, onPageChange }: Paginatio
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
       >
-        <ChevronLeft className="w-4 h-4 mr-1" />
+        <ArrowLeft className="w-4 h-4 mr-1" />
         Previous
       </Button>
 
@@ -84,7 +84,7 @@ export default function Pagination({ page, totalPages, onPageChange }: Paginatio
         disabled={page === totalPages}
       >
         Next
-        <ChevronRight className="w-4 h-4 ml-1" />
+        <ArrowRight className="w-4 h-4 ml-1" />
       </Button>
     </div>
   );
