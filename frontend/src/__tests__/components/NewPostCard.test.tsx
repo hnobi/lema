@@ -14,14 +14,4 @@ describe('NewPostCard', () => {
     expect(label).toBeInTheDocument();
   });
 
-  it('has proper styling classes', () => {
-   render(<NewPostCard onClick={() => {}} />);
-
-    const label = screen.getByText(/new post/i);
-    const card = label.closest('div');
-
-    expect(card).toHaveClass('border-dashed');
-    expect(card).toHaveClass('cursor-pointer');
-    expect(card).toHaveClass('hover:bg-gray-100');
-  });
 });

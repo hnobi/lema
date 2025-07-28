@@ -1,23 +1,22 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as router from "react-router";
 import UsersTable from "@/components/UserTable";
+
+const mockNavigate = vi.fn();
+const mockSetPage = vi.fn();
 
 vi.mock("react-router", async () => {
   const actual: typeof router = await vi.importActual("react-router");
   return {
     ...actual,
-    useNavigate: vi.fn(),
+    useNavigate: () => mockNavigate,
   };
 });
 
 describe("UsersTable", () => {
-  const mockNavigate = vi.fn();
-  const mockSetPage = vi.fn();
-
   beforeEach(() => {
-    // (router.useNavigate as unknown as vi.Mock).mockReturnValue(mockNavigate);
     mockNavigate.mockReset();
     mockSetPage.mockReset();
   });
@@ -35,7 +34,6 @@ describe("UsersTable", () => {
       </MemoryRouter>
     );
 
-    // Names should be sorted alphabetically
     const nameCells = screen.getAllByRole("cell").filter((cell) =>
       ["Alice", "Bob", "Charlie"].includes(cell.textContent || "")
     );
@@ -65,12 +63,10 @@ describe("UsersTable", () => {
 
     const nextButton = screen.getByRole("button", { name: /next/i });
     fireEvent.click(nextButton);
-
     expect(mockSetPage).toHaveBeenCalledWith(2);
 
     const page3Button = screen.getByRole("button", { name: "3" });
     fireEvent.click(page3Button);
-
     expect(mockSetPage).toHaveBeenCalledWith(3);
   });
 
