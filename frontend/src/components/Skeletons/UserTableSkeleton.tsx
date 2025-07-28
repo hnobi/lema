@@ -8,8 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Loader from "../Loader";
 
-const UserTableSkeleton = ({ rows = 6 }: { rows?: number }) => {
+const UserTableSkeleton = () => {
   return (
     <div className="w-full p-4">
       <h2 className="text-header mb-6">Users</h2>
@@ -28,20 +29,15 @@ const UserTableSkeleton = ({ rows = 6 }: { rows?: number }) => {
               </TableHead>
             </TableRow>
           </TableHeader>
+
           <TableBody>
-            {Array.from({ length: rows }).map((_, idx) => (
-              <TableRow key={idx}>
-                <TableCell className="px-6 py-4 border-b border-gray-200">
-                  <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
-                </TableCell>
-                <TableCell className="px-6 py-4 border-b border-gray-200">
-                  <div className="h-4 w-48 bg-gray-200 rounded animate-pulse" />
-                </TableCell>
-                <TableCell className="px-6 py-4 border-b border-gray-200">
-                  <div className="h-4 w-64 bg-gray-200 rounded animate-pulse" />
-                </TableCell>
-              </TableRow>
-            ))}
+            <TableRow>
+              <TableCell colSpan={3} className="h-[332px]">
+                <div className="flex justify-center items-center w-full h-full">
+                  <Loader />
+                </div>
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </div>

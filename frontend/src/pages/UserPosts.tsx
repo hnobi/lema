@@ -7,6 +7,7 @@ import { deletePost, fetchUserById } from "@/services/user";
 import { toast } from "react-toastify";
 import NewPostModal from "@/components/NewPostModal";
 import { useState } from "react";
+import Loader from "@/components/Loader";
 
 
 const UserPosts = () => {
@@ -34,7 +35,9 @@ const UserPosts = () => {
 	const handleCloseNewPost = () => setOpen(false);
 
 
-	if (isLoading) return <p>Loading...</p>;
+	if (isLoading) return (<div className="flex justify-center items-center w-full h-screen">
+		<Loader />
+	</div>);
 	if (error) return <p>Error loading users.</p>;
 
 	if (!data || !data.posts || !data.user) {
@@ -56,13 +59,13 @@ const UserPosts = () => {
 					</div>
 				</div>
 				<div className="flex flex-wrap gap-x-[23px] gap-y-6">
-					<NewPostCard  onClick={handleOpenNewPost}/>
+					<NewPostCard onClick={handleOpenNewPost} />
 					{posts.map((post: Post) => (
-						<PostCard key={post.id} post={post} handleDelete={() => deletePostMutation.mutate(String(post.id))}/>
+						<PostCard key={post.id} post={post} handleDelete={() => deletePostMutation.mutate(String(post.id))} />
 					))}
 				</div>
 			</div>
-			<NewPostModal open={open} onClose={ handleCloseNewPost} userId={userId || ""} />
+			<NewPostModal open={open} onClose={handleCloseNewPost} userId={userId || ""} />
 		</div>
 	);
 }

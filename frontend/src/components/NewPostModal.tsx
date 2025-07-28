@@ -41,7 +41,7 @@ export default function NewPostModal({ open, onClose, userId }: Props) {
     });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      queryClient.invalidateQueries({ queryKey: ['posts', userId] });
       onClose();
     },
   });
