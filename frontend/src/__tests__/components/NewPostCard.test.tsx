@@ -4,7 +4,8 @@ import { describe, it, expect } from 'vitest';
 
 describe('NewPostCard', () => {
   it('renders the icon and label', () => {
-    render(<NewPostCard />);
+    render(<NewPostCard onClick={() => {}} />);
+
 
     const icon = screen.getByTestId('plus-icon');
     expect(icon).toBeInTheDocument();
@@ -14,7 +15,8 @@ describe('NewPostCard', () => {
   });
 
   it('has proper styling classes', () => {
-    render(<NewPostCard />);
+   render(<NewPostCard onClick={() => {}} />);
+
     const label = screen.getByText(/new post/i);
     const card = label.closest('div');
 
