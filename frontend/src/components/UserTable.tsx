@@ -31,19 +31,19 @@ const UsersTable = ({ users, page, setPage, totalPages }: UsersTableProps) => {
   );
 
   return (
-    <div className="w-full p-4">
-      <h2 className="text-4xl font-semibold mb-8 text-left">Users</h2>
-      <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
+    <div className="w-full p-4  space-y-6">
+      <h2 className="text-header">Users</h2>
+      <div className="overflow-x-auto rounded-lg border-b-0 border-[1px] border-gray-200 bg-white">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead className="text-left px-6 py-4 font-medium text-gray-700">
+            <TableRow >
+              <TableHead className="text-left px-6 py-3 text-xs font-medium text-gray-600">
                 Full Name
               </TableHead>
-              <TableHead className="text-left px-6 py-4 font-medium text-gray-700">
+              <TableHead className="text-left px-6 py-3 text-xs font-medium text-gray-600">
                 Email Address
               </TableHead>
-              <TableHead className="text-left px-6 py-4 font-medium text-gray-700">
+              <TableHead className="text-left px-6 py-3 text-xs font-medium text-gray-600">
                 Address
               </TableHead>
             </TableRow>
@@ -61,14 +61,14 @@ const UsersTable = ({ users, page, setPage, totalPages }: UsersTableProps) => {
                   }
                 }}
               >
-                <TableCell className="px-6 py-4 border-b border-gray-200">
+                <TableCell className="px-6 py-4 border-b text-[14px] text-gray-600 font-medium border-gray-200 whitespace-nowrap">
                   {user.name}
                 </TableCell>
-                <TableCell className="px-6 py-4 border-b border-gray-200">
+                <TableCell className="px-6 py-4 border-b text-[14px] text-gray-600 font-medium border-gray-200 whitespace-nowrap">
                   {user.email}
                 </TableCell>
                 <TableCell
-                  className="px-6 py-4 border-b border-gray-200 truncate max-w-[392px]"
+                  className="px-6 py-4 border-b border-gray-200 truncate w-[392px]"
                   title={user.address}
                 >
                   {user.address}
@@ -78,7 +78,7 @@ const UsersTable = ({ users, page, setPage, totalPages }: UsersTableProps) => {
           </TableBody>
         </Table>
       </div>
-      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} className="sm:justify-end"/>
     </div>
   );
 };

@@ -12,7 +12,7 @@ import {
 const UserTableSkeleton = ({ rows = 6 }: { rows?: number }) => {
   return (
     <div className="w-full p-4">
-      <h2 className="text-4xl font-semibold mb-8 text-left">Users</h2>
+      <h2 className="text-header mb-6">Users</h2>
       <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
         <Table>
           <TableHeader>

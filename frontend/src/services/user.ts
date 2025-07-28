@@ -34,3 +34,13 @@ export const deletePost = async (postId: string) => {
     throw new Error(`Failed to delete post with ID: ${postId}`);
   }
 }
+
+export const createPost = async (postData: any) => {
+  try {
+    const res = await axios.post(`${API_BASE_URL}/api/posts`, postData);
+    return res.data;
+  } catch (error) {
+    console.error('Failed to create post:', error);
+    throw new Error('Failed to create post');
+  }
+};

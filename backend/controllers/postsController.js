@@ -15,6 +15,7 @@ export function listPosts(req, res) {
         FROM posts
         JOIN users ON posts.user_id = users.id
         WHERE users.id = ?
+		ORDER BY posts.created_at DESC
         LIMIT ? OFFSET ?
     `;
 
@@ -52,5 +53,31 @@ export function deletePost(req, res) {
 			return res.status(404).json({ message: 'Post not found' });
 		}
 		res.status(204).send();
+	});
+}
+
+export function addPost(req, res) {
+	const { id, user_id, title, body, created_at } = req.body;
+
+	if (!id || !user_id || !title || !body || !created_at) {
+		return res.status(400).json({ message: 'All fields are required' });
+	}
+
+	const query = `
+        INSERT INTO posts (id, user_id, title, body, created_at)
+        VALUES (?, ?, ?, ?, ?)
+    `;
+
+	db.run(query, [id, user_id, title, body, created_at], function (err) {
+		if (err) {
+			return res.status(500).json({ error: err.message });
+		}
+		res.status(201).json({ 
+			id,
+			user_id,
+			title,
+			body,
+			created_at
+		});
 	});
 }
