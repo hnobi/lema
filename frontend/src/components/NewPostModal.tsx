@@ -45,6 +45,7 @@ export default function NewPostModal({ open, onClose, userId }: Props) {
       onClose();
     },
   });
+  
 
   const {
     register,

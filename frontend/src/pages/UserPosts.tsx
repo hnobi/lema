@@ -17,7 +17,7 @@ const UserPosts = () => {
 	const key: QueryKey = ['posts', userId];
 
 	const { data, isLoading, error } = useQuery({
-		queryKey: [key],
+		queryKey: key,
 		queryFn: () => fetchUserById(userId as string),
 		enabled: !!userId,
 	});
@@ -27,7 +27,7 @@ const UserPosts = () => {
 		onSuccess: () => {
 			toast.error("Post deleted successfully");
 			if (userId) {
-				queryClient.invalidateQueries({ queryKey: [key] });
+				queryClient.invalidateQueries({ queryKey: key});
 			}
 		},
 	});
@@ -35,9 +35,11 @@ const UserPosts = () => {
 	const handleCloseNewPost = () => setOpen(false);
 
 
-	if (isLoading) return (<div className="flex justify-center items-center w-full h-screen">
+	if (isLoading) return (
+	<div className="flex justify-center items-center w-full h-screen">
 		<Loader />
-	</div>);
+	</div>
+	);
 	if (error) return <p>Error loading users.</p>;
 
 	if (!data || !data.posts || !data.user) {
