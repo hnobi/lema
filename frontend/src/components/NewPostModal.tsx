@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { createPost } from "@/services/user";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -41,11 +42,12 @@ export default function NewPostModal({ open, onClose, userId }: Props) {
     });
     },
     onSuccess: () => {
+      toast.success("New Post added successfully");
       queryClient.invalidateQueries({ queryKey: ['posts', userId] });
       onClose();
     },
   });
-  
+
 
   const {
     register,
