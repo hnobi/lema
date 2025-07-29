@@ -39,7 +39,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-gray-200: #E9EAEB;
+  --color-gray-200: ##E2E8F0;
+  --color-gray-300: #D5D7DA;
   --color-gray-500: #717680;
   --color-gray-600: #535862;
   --color-gray-900: #181D27;
@@ -131,4 +132,10 @@
     @apply text-[60px] text-[#181D27]
   }
   
+}
+
+.shadow-card {
+  box-shadow:
+    0px 2px 4px -2px #0A0D120F,
+    0px 4px 8px -2px #0A0D121A;
 }

@@ -18,8 +18,16 @@ import { createPost } from "@/services/user";
 import { toast } from "react-toastify";
 
 const schema = z.object({
-  title: z.string().min(1, "Title is required"),
-  body: z.string().min(1, "Content is required"),
+  title: z
+    .string()
+    .trim()
+    .min(1, "Title is required")
+    .max(50, "Title must be at most 50 characters"),
+  body: z
+    .string()
+    .trim()
+    .min(1, "Content is required")
+    .max(600, "Content must be at most 600 characters"),
 });
 
 type NewPostData = z.infer<typeof schema>;
@@ -55,26 +63,28 @@ export default function NewPostModal({ open, onClose, userId }: Props) {
     formState: { errors },
   } = useForm<NewPostData>({
     resolver: zodResolver(schema),
+     mode: "onChange"
   });
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>New Post</DialogTitle>
+    <Dialog open={open} onOpenChange={onClose} >
+      <DialogContent className="h-[483px] w-[679px] p-6">
+        <DialogHeader >
+          <DialogTitle className="text-3xl font-medium">New Post</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-4">
+        <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium">Post title</label>
-            <Input placeholder="Give your post a title" {...register("title")} />
+            <label className="block text-[18px] text-gray-600font-medium mb-[10px]">Post title</label>
+            <Input placeholder="Give your post a title" {...register("title")} className="rounded-sm text-sm"/>
             {errors.title && <p className="text-red-500 text-xs">{errors.title.message}</p>}
           </div>
 
           <div>
-            <label className="block text-sm font-medium">Post content</label>
+            <label className="block text-[18px] text-gray-600font-medium mb-[10px]">Post content</label>
             <Textarea
-              placeholder="Write something mind-blowing"
+            className="border-[1px] border-gray-200 h-[179px] py-[10px] px-[15px] rounded-sm text-sm"
+              placeholder="Write something mind-blowing "
               rows={5}
               {...register("body")}
             />
