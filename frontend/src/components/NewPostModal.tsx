@@ -69,7 +69,7 @@ export default function NewPostModal({ open, onClose, userId }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={onClose} >
-      <DialogContent className="h-[483px] w-[679px] p-6">
+      <DialogContent className="sm:h-[483px] w-[679px] p-6">
         <DialogHeader >
           <DialogTitle className="text-3xl font-medium">New Post</DialogTitle>
         </DialogHeader>
