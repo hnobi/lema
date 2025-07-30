@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { createPost } from "@/services/user";
 import { toast } from "react-toastify";
+import { Ellipsis } from "lucide-react";
 
 const schema = z.object({
   title: z
@@ -96,7 +97,7 @@ export default function NewPostModal({ open, onClose, userId }: Props) {
               Cancel
             </Button>
             <Button type="submit" disabled={mutation.isPending}>
-              {mutation.isPending ? "Publishing..." : "Publish"}
+              {mutation.isPending ? <><span>Publishing</span> <Ellipsis/> </>: "Publish" }
             </Button>
           </DialogFooter>
         </form>
